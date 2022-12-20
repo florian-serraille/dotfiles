@@ -75,6 +75,8 @@ plugins=(
 	asdf
 	golang
 	httpie
+	docker
+	docker-compose
 )
 
 source $ZSH/oh-my-zsh.sh

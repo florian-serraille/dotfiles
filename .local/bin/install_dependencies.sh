@@ -17,6 +17,33 @@ sudo dnf install -y zsh
 chsh -s $(which zsh)
 sh -c "$(wget -O- https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 
+# install docker & co
+sudo dnf remove -y docker \
+                  docker-client \
+                  docker-client-latest \
+                  docker-common \
+                  docker-latest \
+                  docker-latest-logrotate \
+                  docker-logrotate \
+                  docker-selinux \
+                  docker-engine-selinux \
+                  docker-engine
+
+sudo dnf -y install dnf-plugins-core
+sudo dnf config-manager --add-repo https://download.docker.com/linux/fedora/docker-ce.repo
+sudo dnf install -y docker-ce \
+		docker-ce-cli \
+		containerd.io \
+		docker-compose \
+		docker-compose-plugin
+
+sudo usermod -aG docker $USER
+newgrp docker
+
+sudo systemctl start docker
+sudo systemctl enable docker.service
+sudo systemctl enable containerd.service
+
 # install asdf
 git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.11.0
 
@@ -44,4 +71,6 @@ asdf plugin-add golang
 asdf install golang 1.19
 asdf global golang 1.19
 
-
+asdf plugin add lazydocker https://github.com/comdotlinux/asdf-lazydocker.git
+asdf install lazydocker 0.20.0
+asdf global lazydocker 0.20.0
