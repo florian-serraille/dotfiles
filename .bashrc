@@ -26,3 +26,8 @@ fi
 
 unset rc
 
+# ASDF Config
+. $HOME/.asdf/asdf.sh
+. $HOME/.asdf/completions/asdf.bash
+
+

@@ -17,3 +17,5 @@ sudo dnf install -y zsh
 chsh -s $(which zsh)
 sh -c "$(wget -O- https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 
+# install asdf
+git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.11.0
