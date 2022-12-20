@@ -73,6 +73,8 @@ ZSH_THEME="robbyrussell"
 plugins=(
 	git
 	asdf
+	golang
+	httpie
 )
 
 source $ZSH/oh-my-zsh.sh
