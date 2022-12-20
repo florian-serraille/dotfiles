@@ -1,3 +1,3 @@
 #!/bin/bash
 
-sudo dnf install -y vim 
+sudo dnf install -y vim feh
