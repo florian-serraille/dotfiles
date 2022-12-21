@@ -19,6 +19,10 @@ sh -c "$(wget -O- https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools
 
 git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k
 
+git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
+
+git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
+
 # install docker & co
 sudo dnf remove -y docker \
                   docker-client \
@@ -93,3 +97,7 @@ curl https://github.com/ryanoasis/nerd-fonts/releases/download/v2.2.2/JetBrainsM
 unzip /tmp/JetBrainsMono.zip -d "${HOME}/.local/share/fonts/JetBrainsMono"
 unzip /tmp/JetBrainsMonoNerdFonts.zip -d "${HOME}/.local/share/fonts/JetBrainsMonoNerdFonts"
 fc-cache -v
+
+# install FZF
+git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
+

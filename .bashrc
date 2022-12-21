@@ -31,3 +31,5 @@ unset rc
 . $HOME/.asdf/completions/asdf.bash
 
 
+
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash
