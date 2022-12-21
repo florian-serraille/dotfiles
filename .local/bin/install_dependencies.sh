@@ -3,7 +3,7 @@
 sudo dnf update
 
 # install core tools
-sudo dnf install -y vim tree wget curl tree
+sudo dnf install -y vim tree wget curl tree unzip
 
 # add workstation repository
 sudo dnf install -y fedora-workstation-repositories
@@ -74,3 +74,20 @@ asdf global golang 1.19
 asdf plugin add lazydocker https://github.com/comdotlinux/asdf-lazydocker.git
 asdf install lazydocker 0.20.0
 asdf global lazydocker 0.20.0
+
+# install alacritty
+sudo dnf install -y alacritty
+
+# install ssh server
+sudo dnf install -y openssh-server
+sudo systemctl enable sshd
+sudo systemctl start sshd
+
+# install fonts
+curl https://download.jetbrains.com/fonts/JetBrainsMono-2.242.zip -L -o /tmp/JetBrainsMono.zip
+curl https://github.com/ryanoasis/nerd-fonts/releases/download/v2.2.2/JetBrainsMono.zip -L -o /tmp/JetBrainsMonoNerdFonts.zip
+[[ -d "${HOME}/.local/share/fonts/JetBrainsMono" ]] || mkdir -p "${HOME}/.local/share/fonts/JetBrainsMono"
+[[ -d "${HOME}/.local/share/fonts/JetBrainsMonoNerdFonts" ]] || mkdir -p "${HOME}/.local/share/fonts/JetBrainsMonoNerdFonts"
+unzip /tmp/JetBrainsMono.zip -d "${HOME}/.local/share/fonts/JetBrainsMono"
+unzip /tmp/JetBrainsMonoNerdFonts.zip -d "${HOME}/.local/share/fonts/JetBrainsMonoNerdFonts"
+fc-cache -v
