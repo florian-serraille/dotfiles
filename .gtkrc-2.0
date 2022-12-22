@@ -3,7 +3,7 @@
 
 include "/home/florian/.gtkrc-2.0.mine"
 gtk-theme-name="Arc-Dark-solid"
-gtk-icon-theme-name="hicolor"
+gtk-icon-theme-name="Numix"
 gtk-font-name="System San Francisco Display 12"
 gtk-cursor-theme-name="Adwaita"
 gtk-cursor-theme-size=0
