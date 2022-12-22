@@ -3,7 +3,7 @@
 sudo dnf update
 
 # install core tools
-sudo dnf install -y vim tree wget curl tree unzip
+sudo dnf install -y vim tree wget curl tree unzip xprop
 
 # add workstation repository
 sudo dnf install -y fedora-workstation-repositories
@@ -91,11 +91,17 @@ sudo systemctl start sshd
 
 # install fonts
 curl https://download.jetbrains.com/fonts/JetBrainsMono-2.242.zip -L -o /tmp/JetBrainsMono.zip
-curl https://github.com/ryanoasis/nerd-fonts/releases/download/v2.2.2/JetBrainsMono.zip -L -o /tmp/JetBrainsMonoNerdFonts.zip
 [[ -d "${HOME}/.local/share/fonts/JetBrainsMono" ]] || mkdir -p "${HOME}/.local/share/fonts/JetBrainsMono"
-[[ -d "${HOME}/.local/share/fonts/JetBrainsMonoNerdFonts" ]] || mkdir -p "${HOME}/.local/share/fonts/JetBrainsMonoNerdFonts"
 unzip /tmp/JetBrainsMono.zip -d "${HOME}/.local/share/fonts/JetBrainsMono"
-unzip /tmp/JetBrainsMonoNerdFonts.zip -d "${HOME}/.local/share/fonts/JetBrainsMonoNerdFonts"
+
+curl https://github.com/FortAwesome/Font-Awesome/archive/refs/tags/6.2.1.zip -L -o /tmp/FontAwesome.zip
+[[ -d "${HOME}/.local/share/fonts/FontAwesome" ]] || mkdir -p "${HOME}/.local/share/fonts/FontAwesome"
+unzip /tmp/FontAwesome.zip -d "${HOME}/.local/share/fonts/FontAwesome"
+
+curl https://github.com/supermarin/YosemiteSanFranciscoFont/archive/master.zip -L -o /tmp/YosemiteSanFranciscoFont.zip
+[[ -d "${HOME}/.local/share/fonts/YosemiteSanFranciscoFont" ]] || mkdir -p "${HOME}/.local/share/fonts/YosemiteSanFranciscoFont"
+unzip /tmp/YosemiteSanFranciscoFont.zip -d "${HOME}/.local/share/fonts/YosemiteSanFranciscoFont"
+
 fc-cache -v
 
 # install FZF
