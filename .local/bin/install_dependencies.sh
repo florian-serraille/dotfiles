@@ -109,3 +109,7 @@ git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
 
 # GTK Theme
 sudo dnf install -y lxappearance arc-theme numix-icon-theme-circle
+
+# System monitor
+sudo dnf copr enable atim/bottom -y
+sudo dnf install -y bottom
