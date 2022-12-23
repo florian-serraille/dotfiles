@@ -113,3 +113,6 @@ sudo dnf install -y lxappearance arc-theme numix-icon-theme-circle
 # System monitor
 sudo dnf copr enable atim/bottom -y
 sudo dnf install -y bottom
+
+# Screenshot
+sudo dnf install -y flameshot
