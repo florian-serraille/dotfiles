@@ -2,17 +2,17 @@
 
 sudo dnf update
 
-# install core tools
+# Core tools
 sudo dnf install -y vim tree wget curl tree unzip xprop
 
-# add workstation repository
+# Workstation repository
 sudo dnf install -y fedora-workstation-repositories
 
-# install google chrome
+# Google Chrome
 sudo dnf config-manager --set-enabled google-chrome
 sudo dnf install -y google-chrome-stable
 
-# install zsh
+# ZSH
 sudo dnf install -y zsh
 chsh -s $(which zsh)
 sh -c "$(wget -O- https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
@@ -23,7 +23,7 @@ git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-m
 
 git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
 
-# install docker & co
+# Docker & Co
 sudo dnf remove -y docker \
                   docker-client \
                   docker-client-latest \
@@ -50,7 +50,7 @@ sudo systemctl start docker
 sudo systemctl enable docker.service
 sudo systemctl enable containerd.service
 
-# install asdf
+# ASDF
 git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.11.0
 
 asdf plugin-add java
@@ -81,15 +81,15 @@ asdf plugin add lazydocker https://github.com/comdotlinux/asdf-lazydocker.git
 asdf install lazydocker 0.20.0
 asdf global lazydocker 0.20.0
 
-# install alacritty
+# Alacritty
 sudo dnf install -y alacritty
 
-# install ssh server
+# SSH Server
 sudo dnf install -y openssh-server
 sudo systemctl enable sshd
 sudo systemctl start sshd
 
-# install fonts
+# Fonts
 curl https://download.jetbrains.com/fonts/JetBrainsMono-2.242.zip -L -o /tmp/JetBrainsMono.zip
 [[ -d "${HOME}/.local/share/fonts/JetBrainsMono" ]] || mkdir -p "${HOME}/.local/share/fonts/JetBrainsMono"
 unzip /tmp/JetBrainsMono.zip -d "${HOME}/.local/share/fonts/JetBrainsMono"
@@ -104,7 +104,7 @@ unzip /tmp/YosemiteSanFranciscoFont.zip -d "${HOME}/.local/share/fonts/YosemiteS
 
 fc-cache -v
 
-# install FZF
+# FZF
 git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
 
 # GTK Theme
@@ -117,7 +117,7 @@ sudo dnf install -y bottom
 # Screenshot
 sudo dnf install -y flameshot
 
-# Launcher
+# Rofi Launcher
 sudo dnf install -y rofi
 git clone --depth=1 https://github.com/adi1090x/rofi.git
 cd rofi
