@@ -116,3 +116,12 @@ sudo dnf install -y bottom
 
 # Screenshot
 sudo dnf install -y flameshot
+
+# Launcher
+sudo dnf install -y rofi
+git clone --depth=1 https://github.com/adi1090x/rofi.git
+cd rofi
+chmod +x setup.sh
+./setup.sh
+cd ~ && rm -rf rofi
+sed -i "s/theme='style-1'/theme='style-4'/"  ~/.config/rofi/launchers/type-4/launcher.sh
