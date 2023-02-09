@@ -87,6 +87,7 @@ plugins=(
 	httpie
 	docker
 	docker-compose
+    colored-man-pages
 	zsh-syntax-highlighting
 )
 

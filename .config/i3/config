@@ -103,16 +103,16 @@ bindsym $mod+a focus parent
 
 # Define names for default workspaces for which we configure key bindings later on.
 # We use variables to avoid repeating the names in multiple places.
-set $ws1 "1: "
-set $ws2 "2: "
-set $ws3 "3: "
-set $ws4 "4: "
-set $ws5 "5: "
-set $ws6 "6: "
-set $ws7 "7: "
+set $ws1 "1"
+set $ws2 "2"
+set $ws3 "3"
+set $ws4 "4"
+set $ws5 "5"
+set $ws6 "6"
+set $ws7 "7"
 set $ws8 "8"
-set $ws9 "9: "
-set $ws10 "10: "
+set $ws9 "9"
+set $ws10 "10"
 
 # switch to workspace
 bindsym $mod+1 workspace number $ws1
@@ -173,39 +173,64 @@ mode "resize" {
 bindsym $mod+r mode "resize"
 
 # color variables
-set $bg-color 	         #2f343f
-set $inactive-bg-color   #2f343f
-set $text-color          #f3f4f5
-set $inactive-text-color #676E7D
-set $urgent-bg-color     #E53935
+#set $bg-color 	         #2f343f
+#set $inactive-bg-color   #2f343f
+#set $text-color          #f3f4f5
+#set $inactive-text-color #676E7D
+#set $urgent-bg-color     #E53935
 
-# class                 border  bground text    indicator child_border
-client.focused          $bg-color           $bg-color          $text-color          #00ff00
-client.unfocused        $inactive-bg-color $inactive-bg-color $inactive-text-color #00ff00
-client.focused_inactive $inactive-bg-color $inactive-bg-color $inactive-text-color #00ff00
-client.urgent           $urgent-bg-color    $urgent-bg-color   $text-color          #00ff00
-client.placeholder      #000000 #0C0C0C #FFFFFF #000000   #0C0C0C
+# class                 border              bground text        indicator               child_border
+#client.focused          $bg-color           $bg-color           $text-color             #00ff00
+#client.unfocused        $inactive-bg-color  $inactive-bg-color  $inactive-text-color    #00ff00
+#client.focused_inactive $inactive-bg-color  $inactive-bg-color  $inactive-text-color    #00ff00
+#client.urgent           $urgent-bg-color    $urgent-bg-color    $text-color             #00ff00
+#client.placeholder      #000000             #0C0C0C             #FFFFFF                 #000000   #0C0C0C
 
-client.background       $bg-color
+#client.background       $bg-color
 
+# set primary gruvbox colorscheme colors
+set $bg #282828
+set $red #cc241d
+set $green #98971a
+set $yellow #d79921
+set $blue #458588
+set $purple #b16286
+set $aqua #689d68
+set $gray #a89984
+set $darkgray #1d2021
 
+# green gruvbox
+# class                 border|backgr|text|indicator|child_border
+#client.focused          $green $green $darkgray $purple $darkgray
+#client.focused_inactive $darkgray $darkgray $yellow $purple $darkgray
+#client.unfocused        $darkgray $darkgray $yellow $purple $darkgray
+#client.urgent           $red $red $white $red $red
+
+# blue gruvbox
+# class                 border|backgr|text|indicator|child_border
+client.focused          $blue $blue $darkgray $purple $darkgray
+client.focused_inactive $darkgray $darkgray $yellow $purple $darkgray
+client.unfocused        $darkgray $darkgray $yellow $purple $darkgray
+client.urgent           $red $red $white $red $red
+
+exec_always --no-startup-id $HOME/.config/polybar/launch.sh
 
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
-bar {
-  colors {
-    background $bg-color
-    statusline #FFFFFF
-    separator #757575
-    #                  border             background         text
-    focused_workspace  $bg-color          $bg-color          $text-color
-    inactive_workspace $inactive-bg-color $inactive-bg-color $inactive-text-color
-    urgent_workspace   $urgent-bg-color   $urgent-bg-color   $text-color
-    active_workspace   #3C6EB4 #294172 #FFFFFF
-    binding_mode       #b691d3 #A07CBC #FFFFFF
-  }
-  status_command i3status
-}
+#bar {
+#  colors {
+#    background $bg-color
+#    statusline #FFFFFF
+#    separator #757575
+#    #                  border             background         text
+#    focused_workspace  $bg-color          $bg-color          $text-color
+#    inactive_workspace $inactive-bg-color $inactive-bg-color $inactive-text-color
+#    urgent_workspace   $urgent-bg-color   $urgent-bg-color   $text-color
+#    active_workspace   #3C6EB4 #294172 #FFFFFF
+#    binding_mode       #b691d3 #A07CBC #FFFFFF
+#  }
+#  status_command i3status
+#}
 
 hide_edge_borders both
 
@@ -218,22 +243,24 @@ bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 0 -5% #d
 bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 0 toggle # mute sound
 
 # Media player controls
-bindsym XF86AudioPlay exec playerctl play
-bindsym XF86AudioPause exec playerctl pause
+bindsym XF86AudioPlay exec playerctl play-pause
 bindsym XF86AudioNext exec playerctl next
 bindsym XF86AudioPrev exec playerctl previous
 
 # Wallpaper
 exec_always feh --bg-scale ~/Pictures/wallpapers/wallpaper.jpg
 
+# Clipboard
+exec_always greenclip daemon
+bindsym $mod+Shift+v exec greenclip print | grep . | dmenu -i -l 10 -p clipboard | xargs -r -d'\n' -I '{}' greenclip print '{}'
+
 # Bind app to workspace
 assign [class="Google-chrome"] $ws2
 assign [class="jetbrains-idea"] $ws3
 assign [class="jetbrains-datagrip"] $ws4
 assign [class="Slack"] $ws5
-assign [class="zoom"] $ws6
+assign [class="Zoom Meeting"] $ws6
 assign [class="VirtualBox Manager"] $ws7
 
-# Enable screenshot
-exec --no-startup-id /usr/bin/flameshot
-
+# Screenshot
+bindsym $mod+Insert exec /usr/bin/flameshot gui

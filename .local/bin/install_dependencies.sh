@@ -3,10 +3,17 @@
 sudo dnf update
 
 # Core tools
-sudo dnf install -y vim tree wget curl tree unzip xprop
+sudo dnf install -y vim tree wget curl tree unzip xprop xev
 
 # Workstation repository
 sudo dnf install -y fedora-workstation-repositories
+
+# NumLock
+sudo dnf install numlockx
+gsettings set org.gnome.desktop.peripherals.keyboard numlock-state true
+
+# Audio
+sudo dnf install -y playerctl
 
 # Google Chrome
 sudo dnf config-manager --set-enabled google-chrome
@@ -117,6 +124,15 @@ sudo dnf install -y bottom
 # Screenshot
 sudo dnf install -y flameshot
 
+# Virtualization
+sudo dnf install VirtualBox virtualbox-guest-additions.x86_64
+curl https://dl.genymotion.com/releases/genymotion-3.3.2/genymotion-3.3.2-linux_x64.bin -L -o /tmp/genymotion.bin
+chmod +x /tmp/genymotion.bin
+mkdir /opt/genymotion
+/tmp/genymotion.bin -d /opt/genymotion
+sudo mv /tmp/genymotion.bin /opt/genymotion
+
+
 # Rofi Launcher
 sudo dnf install -y rofi
 git clone --depth=1 https://github.com/adi1090x/rofi.git
@@ -125,3 +141,11 @@ chmod +x setup.sh
 ./setup.sh
 cd ~ && rm -rf rofi
 sed -i "s/theme='style-1'/theme='style-4'/"  ~/.config/rofi/launchers/type-4/launcher.sh
+
+# Polybar
+sudo dnf install -y polybar
+chmod +x ~/.config/polybar/launch.sh
+
+# Greenclip clipboard manager
+wget https://github.com/erebe/greenclip/releases/download/v4.2/greenclip -O /usr/local/bin/greenclip
+chmod +x /usr/local/bin/greenclip
