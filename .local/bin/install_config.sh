@@ -5,7 +5,7 @@ function config {
 }
 
 function clone_repository(){
-	git clone --bare git@github.com:florian-serraille/dotfiles.git "${HOME}/.dotfiles"
+	git clone --bare https://github.com/florian-serraille/dotfiles.git "${HOME}/.dotfiles"
 }
 
 function configure_repository(){
