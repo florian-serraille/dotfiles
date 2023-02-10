@@ -9,7 +9,7 @@ sudo dnf install -y vim tree wget curl tree unzip xprop xev
 sudo dnf install -y fedora-workstation-repositories
 
 # NumLock
-sudo dnf install numlockx
+sudo dnf install -y numlockx
 gsettings set org.gnome.desktop.peripherals.keyboard numlock-state true
 
 # Audio
@@ -18,6 +18,10 @@ sudo dnf install -y playerctl
 # Google Chrome
 sudo dnf config-manager --set-enabled google-chrome
 sudo dnf install -y google-chrome-stable
+
+# Vim plugins
+git clone https://github.com/morhetz/gruvbox.git ~/.vim/pack/default/start/gruvbox
+git clone https://github.com/lilydjwg/colorizer ~/.vim/pack/default/start/colorizer
 
 # ZSH
 sudo dnf install -y zsh
@@ -50,8 +54,8 @@ sudo dnf install -y docker-ce \
 		docker-compose \
 		docker-compose-plugin
 
-sudo usermod -aG docker $USER
 newgrp docker
+sudo usermod -aG docker $USER
 
 sudo systemctl start docker
 sudo systemctl enable docker.service
@@ -113,6 +117,7 @@ fc-cache -v
 
 # FZF
 git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
+bash ~/.fzf/install
 
 # GTK Theme
 sudo dnf install -y lxappearance arc-theme numix-icon-theme-circle
@@ -148,4 +153,5 @@ chmod +x ~/.config/polybar/launch.sh
 
 # Greenclip clipboard manager
 wget https://github.com/erebe/greenclip/releases/download/v4.2/greenclip -O /usr/local/bin/greenclip
-chmod +x /usr/local/bin/greenclip
+sudo chmod +x /usr/local/bin/greenclip
+

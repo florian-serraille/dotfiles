@@ -1,0 +1,30 @@
+syntax on
+set relativenumber
+
+"tab settings
+set tabstop=4 "tabs expand to 4 spaces
+set shiftwidth=4
+set softtabstop=4
+set expandtab
+set number
+
+"stop auto commenting, this is hurtful more then it is useful
+set formatoptions-=cro
+
+"split settings so they are not stupid like defaults
+set splitbelow splitright
+
+"persistent undo between opening and closing
+set undofile
+
+autocmd Filetype yaml set cursorcolumn
+autocmd Filetype yml set cursorcolumn
+
+autocmd Filetype python set cursorcolumn
+
+autocmd vimenter * ++nested colorscheme gruvbox
+
+set background=dark
+
+source /home/florian/.vim/pack/default/start/colorizer/plugin/colorizer.vim
+source /home/florian/.vim/pack/default/start/colorizer/autoload/colorizer.vim
